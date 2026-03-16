@@ -1,11 +1,11 @@
-document.querySelector("btnCalcular").addEventListener("click", calcularriesgo);
-document.querySelector("btnLimpiar").addEventListener("click", limpiar);
+document.querySelector("#btnCalcular").addEventListener("click", calcularriesgo);
+document.querySelector("#btnLimpiar").addEventListener("click", limpiar);
 
 function calcularriesgo() {
-    const edad = parseFloat(document.getElementById("edad").value);
-    const presion = parseFloat(document.getElementById("presion").value);
-    const colesterol = parseFloat(document.getElementById("colesterol").value);
-    const fumador = parseFloat(document.getElementById("fumador").value);
+    const edad = parseInt(document.getElementById("edad").value);
+    const presion = parseInt(document.getElementById("presion").value);
+    const colesterol = parseInt(document.getElementById("colesterol").value);
+    const fumador = (document.getElementById("fumador").value);
 
     if (edad === "" || presion  === "" || colesterol === "" || fumador === "") {
         document.getElementById("textoResultado").textContent = "Por favor rellena toda la infomación";
@@ -19,15 +19,15 @@ function calcularriesgo() {
     }else if(edad >= 45){
         puntos += 2;
 
-    }if (presion >= 120) {
-        puntos +=1;
-    }else if (presion >= 140) {
+    }if (presion >= 140) {
         puntos +=3;
-        
-    }if(colesterol >= 200){
-        puntos += 1;
-    }else if(colesterol >= 240){
+    }else if (presion >= 120) {
+        puntos +=1;
+
+    }if(colesterol >= 240){
         puntos += 3;
+    }else if(colesterol >= 200){
+        puntos += 1;
     }
 
     if(fumador === "si"){
@@ -35,20 +35,34 @@ function calcularriesgo() {
     }
 
     let riesgo = "";
+    const resultadoDiv = document.getElementById("resultado");
 
     if(puntos <= 2){
         riesgo = "Riesgo Bajo";
-        document.getElementById("resultado").style.backgroundColor = "lightgreen";
+        resultadoDiv.style.backgroundColor = "#0feb34";
     }
     else if(puntos <= 5){
         riesgo = "Riesgo Moderado";
-        document.getElementById("resultado").style.backgroundColor = "khaki";
+        resultadoDiv.style.backgroundColor = "#f9fd00";
     }
     else{
         riesgo = "Riesgo Alto";
-        document.getElementById("resultado").style.backgroundColor = "salmon";
+        resultadoDiv.style.backgroundColor = "#d68710";
     }
 
     document.getElementById("textoResultado").textContent = "Tu nivel de riesgo cardiovascular es:";
     document.getElementById("nivelRiesgo").textContent = riesgo;
+}
+
+function limpiar(){
+    document.getElementById("edad").value = "";
+    document.getElementById("presion").value = "";
+    document.getElementById("colesterol").value = "";
+    document.getElementById("fumador").value = "";
+
+    document.getElementById("textoResultado").textContent = "";
+    document.getElementById("nivelRiesgo").textContent = "";
+    document.getElementById("recomendaciones").innerHTML = "";
+
+    document.getElementById("resultado").style.backgroundColor = "transparent";
 }
