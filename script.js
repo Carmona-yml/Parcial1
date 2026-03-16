@@ -35,19 +35,19 @@ function calcularriesgo() {
     }
 
     let riesgo = "";
-    const resultadoDiv = document.getElementById("resultado");
+    const resultadoriesgo = document.getElementById("resultado");
 
     if(puntos <= 2){
         riesgo = "Riesgo Bajo";
-        resultadoDiv.style.backgroundColor = "#0feb34";
+        resultadoriesgo.style.backgroundColor = "#00ff2a";
     }
     else if(puntos <= 5){
         riesgo = "Riesgo Moderado";
-        resultadoDiv.style.backgroundColor = "#f9fd00";
+        resultadoriesgo.style.backgroundColor = "#f9fd00";
     }
     else{
         riesgo = "Riesgo Alto";
-        resultadoDiv.style.backgroundColor = "#d68710";
+        resultadoriesgo.style.backgroundColor = "#d67a10";
     }
 
     document.getElementById("textoResultado").textContent = "Tu nivel de riesgo cardiovascular es:";
@@ -62,7 +62,6 @@ function limpiar(){
 
     document.getElementById("textoResultado").textContent = "";
     document.getElementById("nivelRiesgo").textContent = "";
-    document.getElementById("recomendaciones").innerHTML = "";
 
     document.getElementById("resultado").style.backgroundColor = "transparent";
 }
